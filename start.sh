@@ -1,4 +1,10 @@
-#!/bin/bash 
-python manage.py migrate 
-python manage.py collectstatic --noinput 
-gunicorn horilla.wsgi:application 
+#!/bin/bash
+
+echo "Running migrations…"
+python manage.py migrate
+
+echo "Collecting static files…"
+python manage.py collectstatic --noinput
+
+echo "Starting server without schedulers…"
+gunicorn horilla.wsgi:application
