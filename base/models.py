@@ -1457,7 +1457,8 @@ class DynamicPagination(models.Model):
     model for storing pagination for employees
     """
 
-    from django.contrib.auth.models import User
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
     from django.core.validators import MinValueValidator
 
     user_id = models.OneToOneField(

@@ -4,8 +4,8 @@ Horilla management command to create a new user and associated employee.
 
 import uuid
 
-from django.contrib.auth.models import User
-from django.core.management.base import BaseCommand, CommandError
+   from django.contrib.auth import get_user_model
+    User = get_user_model()from django.core.management.base import BaseCommand, CommandError
 
 from employee.models import Employee
 

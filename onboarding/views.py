@@ -22,7 +22,8 @@ from urllib.parse import parse_qs
 from django import template
 from django.contrib import messages
 from django.contrib.auth import login
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+User = get_user_model()
 from django.core.files.base import ContentFile
 from django.core.mail import EmailMessage, send_mail
 from django.core.paginator import Paginator

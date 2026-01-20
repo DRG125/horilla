@@ -12,7 +12,8 @@ def update_rotating_work_type_assign(rotating_work_type, new_date):
     """
     Here will update the employee work information details and send notification
     """
-    from django.contrib.auth.models import User
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
 
     employee = rotating_work_type.employee_id
     employee_work_info = employee.employee_work_info
@@ -128,7 +129,8 @@ def update_rotating_shift_assign(rotating_shift, new_date):
     """
     Here will update the employee work information and send notification
     """
-    from django.contrib.auth.models import User
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
 
     next_shift_index = 0
     employee = rotating_shift.employee_id
@@ -254,7 +256,8 @@ def switch_shift():
     """
     This method change employees shift information regards to the shift request
     """
-    from django.contrib.auth.models import User
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
 
     from base.models import ShiftRequest
 
@@ -293,7 +296,8 @@ def undo_shift():
     """
     This method undo previous employees shift information regards to the shift request
     """
-    from django.contrib.auth.models import User
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
 
     from base.models import ShiftRequest
 
@@ -335,7 +339,8 @@ def switch_work_type():
     """
     This method change employees work type information regards to the work type request
     """
-    from django.contrib.auth.models import User
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
 
     from base.models import WorkTypeRequest
 
@@ -375,7 +380,8 @@ def undo_work_type():
     """
     This method undo previous employees work type information regards to the work type request
     """
-    from django.contrib.auth.models import User
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
 
     from base.models import WorkTypeRequest
 

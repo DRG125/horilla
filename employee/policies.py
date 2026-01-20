@@ -10,7 +10,8 @@ from datetime import timedelta
 from urllib.parse import parse_qs
 
 from django.contrib import messages
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+User = get_user_model()
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext_lazy as _

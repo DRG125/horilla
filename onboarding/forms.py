@@ -27,7 +27,8 @@ from typing import Any
 
 from django import forms
 from django.contrib.auth.forms import UserCreationForm as UserForm
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+User = get_user_model()
 from django.forms import DateInput, ValidationError
 from django.template.loader import render_to_string
 from django.utils.translation import gettext_lazy as _

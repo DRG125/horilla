@@ -14,7 +14,8 @@ from urllib.parse import parse_qs, urlencode, urlparse
 from dateutil.relativedelta import relativedelta
 from django import forms
 from django.contrib import messages
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+User = get_user_model()
 from django.core.paginator import Paginator
 from django.db.models import ProtectedError, Q
 from django.db.utils import IntegrityError

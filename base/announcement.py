@@ -6,7 +6,8 @@ import json
 from datetime import datetime, timedelta
 
 from django.contrib import messages
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+User = get_user_model()
 from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render

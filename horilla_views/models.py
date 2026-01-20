@@ -1,6 +1,7 @@
 import json
 
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+User = get_user_model()
 from django.db import models
 
 from horilla.horilla_middlewares import _thread_locals
