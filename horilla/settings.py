@@ -136,8 +136,20 @@ else:
             "PASSWORD": env("DB_PASSWORD", default=""),
             "HOST": env("DB_HOST", default=""),
             "PORT": env("DB_PORT", default=""),
+            # debug: disable persistent connections to rule out pooling issues
+            "CONN_MAX_AGE": 0,
         }
     }
+ # DEBUG LOGGING (temporary)
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {"console": {"class": "logging.StreamHandler"}},
+    "loggers": {
+        "django.db.backends": {"level": "DEBUG", "handlers": ["console"], "propagate": False},
+        "django.request": {"level": "DEBUG", "handlers": ["console"], "propagate": False},
+    },
+}   
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

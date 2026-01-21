@@ -10,15 +10,7 @@ from urllib.parse import parse_qs
 
 from django.core.paginator import Paginator
 from django.shortcuts import render
-
-from django.core.management.base import BaseCommand
-
-class Command(BaseCommand):
-    help = "Imports employees from LDAP into the Django database using LDAP settings from the database"
-
-    def handle(self, *args, **kwargs):
-        from django.contrib.auth import get_user_model
-        User = get_user_model()
+from django.contrib.auth import get_user_model
 
 
 
@@ -113,6 +105,8 @@ def candidate_search(request):
     """
     This method is used to search candidate model and return matching objects
     """
+    User = get_user_model()
+
     previous_data = request.GET.urlencode()
     search = request.GET.get("search")
     if search is None:

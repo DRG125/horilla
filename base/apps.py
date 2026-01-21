@@ -3,7 +3,7 @@ This module contains the configuration for the 'base' app.
 """
 
 from django.apps import AppConfig
-import os
+
 
 
 class BaseConfig(AppConfig):
