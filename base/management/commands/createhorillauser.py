@@ -16,9 +16,6 @@ class Command(BaseCommand):
     """
     help = "Imports employees from LDAP into the Django database using LDAP settings from the database"
 
-    def handle(self, *args, **kwargs):
-        from django.contrib.auth import get_user_model
-        User = get_user_model()
 
     help = "Creates a new user"
 
@@ -31,6 +28,9 @@ class Command(BaseCommand):
         parser.add_argument("--phone", type=str, help="Phone number of the new user")
 
     def handle(self, *args, **options):
+        from django.contrib.auth import get_user_model
+        User = get_user_model()
+        
         if not options["first_name"]:
             first_name = input("Enter first name: ")
             last_name = input("Enter last name: ")

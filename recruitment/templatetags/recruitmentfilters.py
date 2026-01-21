@@ -93,6 +93,9 @@ def employee(uid):
     Returns:
         user object
     """
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
+    
     return User.objects.get(id=uid).employee_get if uid is not None else None
 
 
