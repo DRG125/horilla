@@ -7,7 +7,7 @@ python manage.py migrate
 echo "Collecting static files…"
 python manage.py collectstatic --noinput
 
-echo "Checking superuser and linked Employee…"
+echo "Checking superuser, linked Employee, and loading demo data if needed…"
 
 username=${ADMIN_USERNAME:-}
 password=${ADMIN_PASSWORD:-}
@@ -16,6 +16,8 @@ email=${ADMIN_EMAIL:-}
 python manage.py shell -c "
 from django.contrib.auth import get_user_model
 from employee.models import Employee
+from django.core.management import call_command
+from django.conf import settings
 import os
 
 User = get_user_model()
@@ -36,18 +38,33 @@ else:
     else:
         print(f'Superuser \"{u}\" already exists.')
 
-    # Create linked Employee if it doesn't exist
     if not Employee.objects.filter(employee_user_id=user).exists():
         Employee.objects.create(
             employee_user_id=user,
             employee_first_name=user.first_name or 'Admin',
             employee_last_name=user.last_name or 'User',
             is_active=True,
-            # Add any required fields with default values here
+            # Add required default fields if any
         )
         print(f'Employee linked to superuser \"{u}\" created.')
     else:
         print(f'Employee linked to superuser \"{u}\" already exists.')
+
+    # Check if demo data already loaded (example check: any employees in DB)
+    if Employee.objects.count() <= 1:
+        print('Loading demo data...')
+        data_files = [
+            'user_data.json',
+            'employee_info_data.json',
+            'base_data.json',
+            'work_info_data.json',
+        ]
+        for file in data_files:
+            file_path = os.path.join(settings.BASE_DIR, 'load_data', file)
+            call_command('loaddata', file_path)
+        print('Demo data loaded successfully.')
+    else:
+        print('Demo data already present; skipping load.')
 "
 
 echo "Admin Username: $username"
