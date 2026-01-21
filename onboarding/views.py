@@ -22,8 +22,6 @@ from urllib.parse import parse_qs
 from django import template
 from django.contrib import messages
 from django.contrib.auth import login
-from django.contrib.auth import get_user_model
-User = get_user_model()
 from django.core.files.base import ContentFile
 from django.core.mail import EmailMessage, send_mail
 from django.core.paginator import Paginator
@@ -36,6 +34,16 @@ from django.utils.translation import gettext as __
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods, require_POST
+
+from django.core.management.base import BaseCommand
+
+class Command(BaseCommand):
+    help = "Imports employees from LDAP into the Django database using LDAP settings from the database"
+
+    def handle(self, *args, **kwargs):
+        from django.contrib.auth import get_user_model
+        User = get_user_model()
+
 
 from base.backends import ConfiguredEmailBackend
 from base.methods import (

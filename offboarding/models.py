@@ -2,8 +2,6 @@ from collections.abc import Iterable
 from datetime import date, timedelta
 
 from django.apps import apps
-from django.contrib.auth import get_user_model
-User = get_user_model()
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -18,6 +16,10 @@ from horilla.methods import get_horilla_model_class
 from horilla.models import HorillaModel, upload_path
 from horilla_audit.models import HorillaAuditInfo, HorillaAuditLog
 from notifications.signals import notify
+
+from django.contrib.auth.models import User
+
+
 
 # Create your models here.
 

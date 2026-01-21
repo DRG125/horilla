@@ -4,13 +4,15 @@ methods.py
 This module is used to write methods related to the history
 """
 
-from django.contrib.auth import get_user_model
-User = get_user_model()
+
 from django.core.paginator import Paginator
 from django.db import models
 from django.shortcuts import render
 
 from horilla.decorators import apply_decorators
+
+from django.contrib.auth.models import User
+
 
 
 class Bot:

@@ -32,8 +32,8 @@ def candidate_convert():
     """
     Converts candidates to a "converted" state if they already exist as users.
     """
-    from django.contrib.auth import get_user_model
-    User = get_user_model()
+    from django.contrib.auth.models import User
+
 
     from recruitment.models import Candidate
 

@@ -14,8 +14,6 @@ from urllib.parse import parse_qs, urlencode, urlparse
 from dateutil.relativedelta import relativedelta
 from django import forms
 from django.contrib import messages
-from django.contrib.auth import get_user_model
-User = get_user_model()
 from django.core.paginator import Paginator
 from django.db.models import ProtectedError, Q
 from django.db.utils import IntegrityError
@@ -25,6 +23,16 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+
+from django.core.management.base import BaseCommand
+
+class Command(BaseCommand):
+    help = "Imports employees from LDAP into the Django database using LDAP settings from the database"
+
+    def handle(self, *args, **kwargs):
+        from django.contrib.auth import get_user_model
+        User = get_user_model()
+
 
 from base.methods import (
     closest_numbers,

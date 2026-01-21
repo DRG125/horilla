@@ -17,8 +17,8 @@ def notify_expiring_assets():
     """
     Finds all Expiring Assets and send a notification on the notify_before date.
     """
-    from django.contrib.auth import get_user_model
-    User = get_user_model()
+    from django.contrib.auth.models import User
+
 
     from asset.models import Asset
 
@@ -59,8 +59,8 @@ def notify_expiring_documents():
     """
     Finds all Expiring Documents and send a notification on the notify_before date.
     """
-    from django.contrib.auth import get_user_model
-    User = get_user_model()
+    from django.contrib.auth.models import User
+
 
     from horilla_documents.models import Document
 

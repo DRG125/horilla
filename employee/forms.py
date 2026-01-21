@@ -27,13 +27,15 @@ from datetime import date, datetime
 from typing import Any
 
 from django import forms
-from django.contrib.auth import get_user_model
-User = get_user_model()
 from django.db.models import Q
 from django.forms import DateInput, TextInput
 from django.template.loader import render_to_string
 from django.utils.translation import gettext as _
 from django.utils.translation import gettext_lazy as trans
+
+from django.contrib.auth.models import User
+
+
 
 from base.methods import eval_validate, reload_queryset
 from employee.models import (

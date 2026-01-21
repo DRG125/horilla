@@ -1,11 +1,12 @@
 import contextlib
 import importlib
 
-from django.contrib.auth import get_user_model
-User = get_user_model()
 from django.contrib.contenttypes.models import ContentType
 
 from horilla.horilla_settings import APP_URLS, DYNAMIC_URL_PATTERNS
+
+from django.contrib.auth.models import User
+
 
 
 def get_horilla_model_class(app_label, model):

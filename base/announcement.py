@@ -6,13 +6,15 @@ import json
 from datetime import datetime, timedelta
 
 from django.contrib import messages
-from django.contrib.auth import get_user_model
-User = get_user_model()
 from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+
+from django.contrib.auth.models import User
+
+
 
 from base.forms import AnnouncementCommentForm, AnnouncementForm
 from base.methods import closest_numbers, filter_own_records

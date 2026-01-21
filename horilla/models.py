@@ -13,8 +13,6 @@ from uuid import uuid4
 
 from auditlog.models import AuditlogHistoryField
 from auditlog.registry import auditlog
-from django.contrib.auth import get_user_model
-User = get_user_model()
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models.fields.files import FieldFile
@@ -23,6 +21,8 @@ from django.utils.text import slugify
 from django.utils.translation import gettext as _
 
 from horilla.horilla_middlewares import _thread_locals
+
+from django.contrib.auth.models import User
 
 
 @property

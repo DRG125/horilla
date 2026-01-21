@@ -10,11 +10,19 @@ import uuid
 
 from django import template
 from django.apps import apps
-from django.contrib.auth import get_user_model
-User = get_user_model()
 from django.template.defaultfilters import register
 
 from recruitment.models import CandidateRating
+
+from django.core.management.base import BaseCommand
+
+class Command(BaseCommand):
+    help = "Imports employees from LDAP into the Django database using LDAP settings from the database"
+
+    def handle(self, *args, **kwargs):
+        from django.contrib.auth import get_user_model
+        User = get_user_model()
+
 
 # from django.forms.boundfield
 

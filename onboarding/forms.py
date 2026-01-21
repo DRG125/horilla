@@ -27,8 +27,6 @@ from typing import Any
 
 from django import forms
 from django.contrib.auth.forms import UserCreationForm as UserForm
-from django.contrib.auth import get_user_model
-User = get_user_model()
 from django.forms import DateInput, ValidationError
 from django.template.loader import render_to_string
 from django.utils.translation import gettext_lazy as _
@@ -41,6 +39,9 @@ from horilla_widgets.widgets.horilla_multi_select_field import HorillaMultiSelec
 from horilla_widgets.widgets.select_widgets import HorillaMultiSelectWidget
 from onboarding.models import CandidateTask, OnboardingStage, OnboardingTask
 from recruitment.models import Candidate
+
+from django.contrib.auth.models import User
+
 
 
 class UserCreationFormCustom(UserForm):

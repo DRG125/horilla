@@ -10,8 +10,7 @@ from itertools import chain, groupby
 
 import pandas as pd
 from django.apps import apps
-from django.contrib.auth import get_user_model
-User = get_user_model()
+
 from django.db import connection, models, transaction
 from django.utils.translation import gettext as _
 
@@ -67,6 +66,8 @@ error_data_template = {
         "Company Error",
     ]
 }
+from django.contrib.auth.models import User
+
 
 
 def chunked(iterable, size):

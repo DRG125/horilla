@@ -7,10 +7,20 @@ This module is used to register search/filter views methods
 import json
 from urllib.parse import parse_qs
 
-from django.contrib.auth import get_user_model
-User = get_user_model()
+
 from django.core.paginator import Paginator
 from django.shortcuts import render
+
+from django.core.management.base import BaseCommand
+
+class Command(BaseCommand):
+    help = "Imports employees from LDAP into the Django database using LDAP settings from the database"
+
+    def handle(self, *args, **kwargs):
+        from django.contrib.auth import get_user_model
+        User = get_user_model()
+
+
 
 from base.methods import get_key_instances, get_pagination, sortby
 from horilla.decorators import (

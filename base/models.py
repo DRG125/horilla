@@ -22,6 +22,7 @@ from horilla.horilla_middlewares import _thread_locals
 from horilla.models import HorillaModel, upload_path
 from horilla_audit.models import HorillaAuditInfo, HorillaAuditLog
 
+
 # Create your models here.
 WEEKS = [
     ("0", _("First Week")),
@@ -1457,8 +1458,8 @@ class DynamicPagination(models.Model):
     model for storing pagination for employees
     """
 
-    from django.contrib.auth import get_user_model
-    User = get_user_model()
+    from django.contrib.auth.models import User
+
     from django.core.validators import MinValueValidator
 
     user_id = models.OneToOneField(

@@ -11,16 +11,8 @@ from django.shortcuts import render
 
 from horilla.decorators import apply_decorators
 
-from django.core.management.base import BaseCommand
+from django.contrib.auth.models import User
 
-class Command(BaseCommand):
-    help = "Imports employees from LDAP into the Django database using LDAP settings from the database"
-
-    def handle(self, *args, **kwargs):
-        from django.contrib.auth import get_user_model
-        User = get_user_model()
-
-        # now you can safely use User here
 
 
 class Bot:

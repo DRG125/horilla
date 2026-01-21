@@ -4,8 +4,8 @@ Horilla management command to create a new user and associated employee.
 
 import uuid
 
-   from django.contrib.auth import get_user_model
-    User = get_user_model()from django.core.management.base import BaseCommand, CommandError
+
+from django.core.management.base import BaseCommand, CommandError
 
 from employee.models import Employee
 
@@ -14,6 +14,11 @@ class Command(BaseCommand):
     """
     Horilla management command to create a new user and associated employee.
     """
+    help = "Imports employees from LDAP into the Django database using LDAP settings from the database"
+
+    def handle(self, *args, **kwargs):
+        from django.contrib.auth import get_user_model
+        User = get_user_model()
 
     help = "Creates a new user"
 
