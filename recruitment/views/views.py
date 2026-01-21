@@ -26,8 +26,6 @@ import fitz  # type: ignore
 from django import template
 from django.conf import settings
 from django.contrib import messages
-from django.contrib.auth import get_user_model
-User = get_user_model()
 from django.core import serializers
 from django.core.cache import cache as CACHE
 from django.core.mail import EmailMessage
@@ -40,6 +38,17 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_http_methods
+
+from django.core.management.base import BaseCommand
+
+class Command(BaseCommand):
+    help = "Imports employees from LDAP into the Django database using LDAP settings from the database"
+
+    def handle(self, *args, **kwargs):
+        from django.contrib.auth import get_user_model
+        User = get_user_model()
+
+
 
 from base.backends import ConfiguredEmailBackend
 from base.context_processors import check_candidate_self_tracking
