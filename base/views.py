@@ -760,10 +760,12 @@ def change_password(request):
             new_password = form.cleaned_data["new_password"]
             user.set_password(new_password)
             user.save()
+
+            if hasattr(user, "userprofile"):
+                user.userprofile.is_new_employee = False
+                user.userprofile.save()
+
             user = authenticate(request, username=user.username, password=new_password)
-            if hasattr(user, "is_new_employee"):
-                user.is_new_employee = False
-                user.save()
             login(request, user)
             messages.success(request, _("Password changed successfully"))
             return HttpResponse("<script>window.location.href='/';</script>")
@@ -794,9 +796,6 @@ def change_username(request):
             new_username = form.cleaned_data["username"]
             user.username = new_username
             user.save()
-            if hasattr(user, "is_new_employee"):
-                user.is_new_employee = False
-                user.save()
             messages.success(request, _("Username changed successfully"))
             return HttpResponse("<script>window.location.href='/';</script>")
         return render(request, "base/auth/username_change_form.html", {"form": form})
