@@ -39,26 +39,4 @@ class BaseConfig(AppConfig):
             pass
 
 
-        # -------------------------------
-        # NEW: Auto-create admin (Render)
-        # -------------------------------
-        try:
-           from django.contrib.auth import get_user_model
-           from django.db import connection
-
-           if "auth_user" in connection.introspection.table_names():
-               User = get_user_model()
-
-               username = os.getenv("ADMIN_USERNAME")
-               email = os.getenv("ADMIN_EMAIL")
-               password = os.getenv("ADMIN_PASSWORD")
-
-               if username and password:
-                   if not User.objects.filter(username=username).exists():
-                        User.objects.create_superuser(
-                            username=username,
-                            email=email or "",
-                            password=password,
-                )
-        except Exception:
-            pass
+        
